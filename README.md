@@ -1,98 +1,133 @@
-# Omarchy dotfiles
 
-This repository stores Zack's personal Omarchy/Hyprland overrides. Omarchy's
-packaged defaults remain managed by Omarchy; this repository contains only the
-user files that should be restored after a fresh installation.
+# Linux-builds
 
-## Files to keep backed up
+My personal Linux development workspace.
 
-The reusable configuration is under `omarchy/hypr/`:
+Linux-builds is a long-term project focused on developing a
+modular, portable and maintainable personal Linux environment.
 
-- `hyprland.lua` — loads the personal modules, including workspace rules.
-- `input.lua` — US/Greek keyboard layouts, Alt+Shift switching, and normal Caps Lock behavior.
-- `bindings.lua` — personal keybindings and keybindings-help descriptions.
-- `workspace_rules.lua` — application-to-workspace placement rules.
+The objective is to preserve my preferred desktop experience,
+configurations, keybindings, scripts and workflows across
+different Linux distributions and window managers.
 
-The reusable Zsh configuration is under `zsh/`:
+Rather than depending entirely on a specific distribution or
+preconfigured desktop, the project aims to build reusable
+components that can be combined according to the target system.
 
-- `.zshrc` — loads Omarchy's user environment setup.
-- `starship.toml` — full-path prompt and Git status/counts.
+> One personal environment. Multiple Linux distributions.
+> Interchangeable window managers. Shared components.
 
-The custom Omarchy theme is under `omarchy/themes/symbiote/`:
+## Project Status
 
-- `colors.toml` — black-suit palette with cool web highlights and crimson accents.
-- `backgrounds/` — matching wallpapers, including the original
-  `marvel-black-suit.webp` reference image plus `symbiote.png`, `city-web.png`,
-  `black-weave.png`, and `moonlit-rooftop.png`.
+**In development — Repository Foundation**
 
-Current application placement includes browsers on workspace 2, VS Code and
-other IDEs on 3, Steam/Lutris/Heroic on 5, Discord and messaging apps on 7,
-and games on 8. Email, screen sharing, virtual machines, and multimedia are
-also assigned to workspaces 1, 4, 6, and 9 respectively.
+The project is currently establishing its architecture,
+documentation standards and repository structure.
 
-## Restore on a new Omarchy installation
+Existing configurations will be reviewed and migrated
+progressively. Planned components should not be considered
+implemented or tested until documented otherwise.
 
-Install and launch Omarchy once first so its normal `~/.config/hypr/` files
-exist. Then run:
+## Architecture
 
-```bash
-sudo pacman -S zsh
-chsh -s /usr/bin/zsh
+The architecture separates the personal Linux environment
+into several independent components.
 
-git clone https://github.com/ZackMelza/omarchy-dotfiles.git ~/dotfiles
-mkdir -p ~/.config/hypr
+| Component | Responsibility |
+|---|---|
+| Shared | Common configurations, scripts and conventions |
+| Window Managers | Independent WM implementations |
+| Desktop Shell | Reusable desktop interface components |
+| Presets | Customizations of existing Linux configurations |
+| Distributions | Distribution-specific dependencies and setup |
+| Profiles | Combinations of compatible components |
 
-# Optional safety backup of the fresh/current user config.
-cp -a ~/.config/hypr ~/.config/hypr.backup
+The long-term intention is to support combinations such as:
 
-cp ~/dotfiles/omarchy/hypr/hyprland.lua ~/.config/hypr/
-cp ~/dotfiles/omarchy/hypr/input.lua ~/.config/hypr/
-cp ~/dotfiles/omarchy/hypr/bindings.lua ~/.config/hypr/
-cp ~/dotfiles/omarchy/hypr/workspace_rules.lua ~/.config/hypr/
-cp ~/dotfiles/zsh/.zshrc ~/.zshrc
-cp ~/dotfiles/zsh/starship.toml ~/.config/starship.toml
+- Arch Linux + Hyprland + Quickshell.
+- Debian + i3 + Quickshell.
+- Fedora + Hyprland + Quickshell.
 
-luac -p ~/.config/hypr/hyprland.lua
-luac -p ~/.config/hypr/input.lua
-luac -p ~/.config/hypr/bindings.lua
-luac -p ~/.config/hypr/workspace_rules.lua
+These are architectural targets, not currently verified
+installation profiles.
 
-hyprctl reload
-hyprctl configerrors
-```
+See [Architecture](docs/architecture.md) for the complete
+design principles and development approach.
 
-After restoring, the personal shortcuts are:
+## Existing Components
 
-| Shortcut | Action |
-| --- | --- |
-| `Super+H` | Keybindings help |
-| `Super+E` | File manager |
-| `Super+L` | Lock system |
-| `Super+D` | Discord |
-| `Super+Shift+C` | Codex |
+| Component | Description |
+|---|---|
+| [Omarchy](omarchy/README.md) | Personal Omarchy configurations, overrides and Symbiote theme |
+| [Zsh](zsh/) | Personal Zsh and Starship configurations |
 
-The ThinkPad F1 mute key remains available while locked and uses the custom
-audio-sink mute handler.
+## Planned Components
 
-`Super+C` remains Omarchy's Universal Copy binding.
+The following components will be introduced progressively:
 
-## Updating the backup
+### Window Managers
 
-After changing a user config file, copy it back into this repository and
-commit it:
+- Hyprland — independent personal configuration.
+- i3 — personal X11 configuration.
+- DWM — personal DWM build.
 
-```bash
-cp ~/.config/hypr/<changed-file>.lua ~/dotfiles/omarchy/hypr/
-git -C ~/dotfiles add omarchy/hypr/<changed-file>.lua
-git -C ~/dotfiles commit -m "Describe the customization"
-git -C ~/dotfiles push
-```
+### Configuration Presets
 
-## Important boundaries
+- Omarchy — existing personal customizations.
+- Jakoolit — customizations originating from the existing
+  Jakoolit-based Hyprland repository.
 
-- Do not edit or copy `/usr/share/omarchy/`; Omarchy owns and updates it.
-- Do not copy the entire `~/.config/hypr/` directory over a new install.
-- Do not run the JaKooLit/Hyprland repository setup script on Omarchy. That
-  repository is reference material for selected workspace behavior only.
-- Keep machine-specific monitor, display, and generated state out of this
-  backup unless they are deliberately made portable.
+### Desktop Interface
+
+- Quickshell — intended reusable desktop interface,
+  with environment-specific integrations where necessary.
+
+### Additional Development
+
+- Shared scripts and utilities.
+- Configuration management.
+- Installation profiles.
+- Distribution-specific setup.
+- Linux experiments and learning projects.
+
+## Development and Documentation
+
+Every maintained project should have its own README.
+
+Repository documentation follows common templates to ensure
+that installation, usage, compatibility and limitations are
+recorded consistently.
+
+| Location | Purpose |
+|---|---|
+| [AGENTS.md](AGENTS.md) | AI agent governance and development rules |
+| [ROADMAP.md](ROADMAP.md) | Development phases and current priorities |
+| [.agents/skills/](.agents/skills/) | Specialized agent workflows |
+| [docs/](docs/) | Architecture and general documentation |
+| [reports/](reports/README.md) | Development and implementation reports |
+| [needs/](needs/README.md) | Planned requirements and improvements |
+
+## AI-Assisted Development
+
+AI agents are used as development assistants.
+
+The repository owner retains authority over architectural
+decisions, project direction, priorities and consequential
+repository operations.
+
+All contributing agents must follow AGENTS.md and use the
+applicable repository skills.
+
+## Portability
+
+Portability is a design objective.
+
+Compatibility depends on the distribution, display server,
+window manager and component requirements.
+
+Functionality must be verified on supported environments
+rather than assumed to work universally.
+
+## License
+
+To be determined following the repository and dependency audit.
