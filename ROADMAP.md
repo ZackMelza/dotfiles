@@ -48,7 +48,7 @@ A proposed task is not automatically approved for implementation.
 
 ## Phase 00 — Repository Audit
 
-Status: In Progress
+Status: Completed
 
 ### Objectives
 
@@ -58,10 +58,13 @@ Review existing Linux repositories before consolidation.
 
 - [x] Identify existing GitHub repositories.
 - [x] Identify initial migration candidates.
-- [ ] Inspect the contents of each migration candidate.
-- [ ] Check dependencies, licenses and sensitive information.
-- [ ] Decide which projects require Git history preservation.
-- [ ] Document the migration plan.
+- [x] Inspect the contents of each migration candidate.
+- [x] Check dependencies, licenses and sensitive information.
+- [x] Decide which projects require Git history preservation.
+- [x] Document the migration plan.
+
+See [Repository audit and migration plan](docs/repository-audit.md) for
+findings, unresolved migration gates and the approved import order.
 
 ### Initial Migration Candidates
 
@@ -69,7 +72,7 @@ Review existing Linux repositories before consolidation.
 |---|---|
 | hyprland (Jakoolit customizations) | configs/presets/jakoolit/ |
 | i3-configs | configs/window-managers/i3/ |
-| dwm-build | To be determined after inspection |
+| dwm-build | configs/window-managers/dwm/ |
 
 Existing Omarchy and Zsh configurations will also be
 reorganized during the approved migration phase.
@@ -81,7 +84,7 @@ successful migration and verification.
 
 ## Phase 01 — Repository Foundation
 
-Status: In Progress
+Status: Completed
 
 ### Learning Objectives
 
@@ -99,7 +102,7 @@ Status: In Progress
 - [x] Update the root README.
 - [x] Create ROADMAP.md.
 - [x] Review and verify foundation files.
-- [ ] Merge the foundation branch after owner approval.
+- [x] Merge the foundation branch after owner approval.
 
 ### Completion Criteria
 
@@ -361,18 +364,18 @@ during earlier phases.
 
 # 4. Current Development Focus
 
-Active milestone: Repository Foundation (Phase 01).
+Completed milestones: Repository Audit (Phase 00) and Repository Foundation
+(Phase 01). Next milestone: Configuration Migration (Phase 02, not started).
 
 Current working branch:
 
-chore/repository-foundation
+docs/repository-audit
 
 Immediate priorities:
 
-1. Complete governance and documentation.
-2. Review the repository foundation.
-3. Finish the existing repository audit.
-4. Prepare the configuration migration plan.
+1. Use the approved migration plan and prepare the Phase 02 directory structure.
+2. Migrate i3 first to validate the new structure.
+3. Migrate the JaKooLit preset, then the DWM build.
 
 Do not begin independent window manager or Quickshell
 development before the relevant architectural requirements
