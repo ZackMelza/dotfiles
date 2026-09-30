@@ -2,7 +2,7 @@
 
 - Date: 2026-09-30
 - Related need: None
-- Status: Partial
+- Status: Completed
 
 ## Objective
 
@@ -76,12 +76,16 @@ items are checked off; final verification and merging remain unchecked.
 
 ## Known Issues and Limitations
 
-The Omarchy restoration procedure is documented but has not been tested on a
-fresh installation or against the exact target Omarchy version. Lua syntax
-checking does not prove that Omarchy will load the configuration or that its
-shortcuts and theme will work. The current Zsh files are personal and have not
-been shown portable. The architecture and installation combinations remain
-proposed; the foundation is not yet merged.
+- The Omarchy restoration procedure is documented but has not been tested on a
+  fresh installation or against the exact target Omarchy version. Lua syntax
+  checking does not prove that Omarchy will load the configuration or that its
+  shortcuts and theme will work. The current Zsh files are personal and have not
+  been shown portable. The architecture and installation combinations remain
+  proposed; the foundation is not yet merged.
+- The Symbiote theme installation and activation procedure has been
+  verified successfully on an existing Omarchy installation.
+- The complete documented restoration procedure has not yet been tested
+  end-to-end on a fresh Omarchy installation.
 
 ## Follow-up Work
 
